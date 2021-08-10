@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exception\Validation;
 
 use App\Exception\AbstractHttpException;
@@ -11,10 +13,6 @@ use Throwable;
  */
 abstract class AbstractValidationException extends AbstractHttpException
 {
-    /**
-     * @param string $message
-     * @param Throwable|null $previous
-     */
     public function __construct(string $message, Throwable $previous = null)
     {
         parent::__construct($message, HttpStatusCode::BAD_REQUEST, $previous);

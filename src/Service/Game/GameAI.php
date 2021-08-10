@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Game;
 
 use App\Interfaces\Game\GameAIInterface;
@@ -72,11 +74,6 @@ class GameAI implements GameAIInterface
         $game->setStatus($status);
     }
 
-    /**
-     * @param array $board
-     *
-     * @return string
-     */
     private static function getStatus(array $board): string
     {
         $totalScore = static::X_SCORE | static::O_SCORE;
@@ -95,16 +92,10 @@ class GameAI implements GameAIInterface
         if ((static::O_SCORE | static::X_SCORE) === $totalScore) {
             $result = static::DRAW_SCORE;
         }
+
         return static::SCORE_TO_STATUS[$result];
     }
 
-    /**
-     * @param array $board
-     * @param int $index
-     * @param string $symbol
-     *
-     * @return int
-     */
     private static function getNextStepRating(array $board, int $index, string $symbol): int
     {
         $ratings = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -117,9 +108,9 @@ class GameAI implements GameAIInterface
                 if (GameMoveSymbol::EMPTY === $cell) {
                     $ratings[$index] = static::getNextStepRating($board, $index, $symbol);
                     if ($ratings[$index] < 16) {
-                        $ratings[$index]++;
+                        ++$ratings[$index];
                     } elseif ($ratings[$index] > 24) {
-                        $ratings[$index]--;
+                        --$ratings[$index];
                     }
                 }
             }
@@ -144,10 +135,6 @@ class GameAI implements GameAIInterface
     }
 
     /**
-     * @param array $moveScores
-     *
-     * @return int
-     *
      * @throws \Exception
      */
     private static function selectCell(array $moveScores): int

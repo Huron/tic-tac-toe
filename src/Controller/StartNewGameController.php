@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Interfaces\RequestInterface;
@@ -20,7 +22,7 @@ class StartNewGameController extends AbstractController
     {
         $game = GameObjectFactory::createDtoHelper()->createGateFromDto($request->getJsonData());
         GameObjectFactory::createStorage()->save($game);
-        $location = \sprintf('/api/v1/games/%s', $game->getId());
+        $location = sprintf('/api/v1/games/%s', $game->getId());
 
         return new JsonResponse(
             [

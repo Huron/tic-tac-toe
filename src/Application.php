@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 use App\Exception\AbstractHttpException;
@@ -19,9 +21,14 @@ final class Application
     private Router $router;
 
     /**
-     * @return Application
+     * Constructor.
      */
-    public static function getInstance(): Application
+    private function __construct()
+    {
+        $this->router = new Router();
+    }
+
+    public static function getInstance(): self
     {
         if (null === static::$instance) {
             static::$instance = new static();
@@ -31,14 +38,12 @@ final class Application
     }
 
     /**
-     * @return ResponseInterface
-     *
      * @throws AbstractHttpException|\ReflectionException
      */
     public function run(): ResponseInterface
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        if (!is_string($uri)) {
+        if (!\is_string($uri)) {
             throw new WrongUrlException();
         }
         $route = $this->router->getRoute($uri, $_SERVER['REQUEST_METHOD']);
@@ -47,16 +52,8 @@ final class Application
         }
         /** @var ControllerInterface $controller */
         $controller = $route->getControllerReflection()->newInstance();
-        $request = new Request($_GET, $_POST, $_SERVER);
+        $request = new Request($_GET);
 
         return $controller->execute($request);
-    }
-
-    /**
-     * Constructor.
-     */
-    private function __construct()
-    {
-        $this->router = new Router();
     }
 }

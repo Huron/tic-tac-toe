@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Game;
 
 use App\Exception\Validation\AbstractValidationException;
-use App\Exception\Validation\UnexpectedPropertyException;
 use App\Exception\Validation\PropertyIsRequiredException;
+use App\Exception\Validation\UnexpectedPropertyException;
 use App\Exception\Validation\WrongGameStageException;
 use App\Exception\Validation\WrongMoveException;
 use App\Exception\Validation\WrongValueException;
@@ -28,10 +30,6 @@ class GameDtoHelper implements GameDtoHelperInterface
         return GameObjectFactory::createGame($id, $this->convertStringToBoard($dto->board), $status);
     }
 
-    /**
-     * @param GameInterface $previousGame
-     * @param GameInterface $currentGame
-     */
     public function checkMove(GameInterface $previousGame, GameInterface $currentGame): void
     {
         if ($previousGame->isFinished()) {
@@ -47,14 +45,12 @@ class GameDtoHelper implements GameDtoHelperInterface
             }
             $diff[] = [$previousCell, $currentCell];
         }
-        if (\count($diff) !== 1 || $diff[0][0] !== GameMoveSymbol::EMPTY || $diff[0][1] !== GameMoveSymbol::X) {
+        if (1 !== \count($diff) || GameMoveSymbol::EMPTY !== $diff[0][0] || GameMoveSymbol::X !== $diff[0][1]) {
             throw new WrongMoveException();
         }
     }
 
     /**
-     * @param \stdClass $dto
-     *
      * @throws AbstractValidationException
      */
     private function validateDto(\stdClass $dto): void
@@ -68,16 +64,11 @@ class GameDtoHelper implements GameDtoHelperInterface
         if (!isset($dto->board)) {
             throw new PropertyIsRequiredException('board');
         }
-        if (!preg_match(\sprintf('/[%s%s%s]{9}/', GameMoveSymbol::O, GameMoveSymbol::X, GameMoveSymbol::EMPTY), $dto->board)) {
+        if (!preg_match(sprintf('/[%s%s%s]{9}/', GameMoveSymbol::O, GameMoveSymbol::X, GameMoveSymbol::EMPTY), $dto->board)) {
             throw new WrongValueException('board');
         }
     }
 
-    /**
-     * @param string $stringBoard
-     *
-     * @return array
-     */
     private function convertStringToBoard(string $stringBoard): array
     {
         return str_split($stringBoard);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Game;
 
 use App\Exception\FileNotFoundException;
@@ -23,7 +25,7 @@ class GameStorage implements GameStorageInterface
                 continue;
             }
             $content = file_get_contents($fileInfo->getPathname());
-            if (!is_string($content)) {
+            if (!\is_string($content)) {
                 continue;
             }
             $game = unserialize($content);
@@ -42,11 +44,6 @@ class GameStorage implements GameStorageInterface
         file_put_contents(static::getFileName($game->getId()), serialize($game));
     }
 
-    /**
-     * @param string|null $id
-     *
-     * @return Game|null
-     */
     public function get(?string $id): ?Game
     {
         if (null === $id) {
@@ -57,7 +54,7 @@ class GameStorage implements GameStorageInterface
             return null;
         }
         $content = file_get_contents($fileName);
-        if (!is_string($content)) {
+        if (!\is_string($content)) {
             return null;
         }
         $game = unserialize($content);
@@ -66,8 +63,6 @@ class GameStorage implements GameStorageInterface
     }
 
     /**
-     * @param string|null $id
-     *
      * @throws FileNotFoundException
      */
     public function delete(?string $id): void
@@ -82,13 +77,8 @@ class GameStorage implements GameStorageInterface
         unlink($fileName);
     }
 
-    /**
-     * @param string $id
-     *
-     * @return string
-     */
     private static function getFileName(string $id): string
     {
-        return \sprintf('%s/%s', self::DIRECTORY, $id);
+        return sprintf('%s/%s', self::DIRECTORY, $id);
     }
 }

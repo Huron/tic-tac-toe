@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Interfaces\Routing;
 
 /**
@@ -7,11 +9,5 @@ namespace App\Interfaces\Routing;
  */
 interface RouterInterface
 {
-    /**
-     * @param string $url
-     * @param string $method
-     *
-     * @return RouteInterface|null
-     */
     public function getRoute(string $url, string $method): ?RouteInterface;
 }

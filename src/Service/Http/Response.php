@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Http;
 
 use App\Interfaces\ResponseInterface;
@@ -13,11 +15,6 @@ class Response implements ResponseInterface
     private ?string $content;
     private array $headers;
 
-    /**
-     * @param int $statusCode
-     * @param string|null $content
-     * @param array $headers
-     */
     public function __construct(int $statusCode = HttpStatusCode::OK, ?string $content = null, array $headers = [])
     {
         $this->statusCode = $statusCode;
@@ -37,17 +34,11 @@ class Response implements ResponseInterface
         return 'application/json';
     }
 
-    /**
-     * @return int
-     */
     public function getStatusCode(): int
     {
         return $this->statusCode;
     }
 
-    /**
-     * @return array
-     */
     public function getHeaders(): array
     {
         return $this->headers;
@@ -57,9 +48,9 @@ class Response implements ResponseInterface
     public function send(): void
     {
         http_response_code($this->getStatusCode());
-        header(\sprintf('Content-Type: %s', $this->getContentType()));
+        header(sprintf('Content-Type: %s', $this->getContentType()));
         foreach ($this->headers as $name => $value) {
-            header(\sprintf('%s: %s', $name, $value));
+            header(sprintf('%s: %s', $name, $value));
         }
         echo $this->getContent();
     }

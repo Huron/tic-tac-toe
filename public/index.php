@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Application;
 use App\Exception\AbstractHttpException;
 use App\Service\Http\HttpStatusCode;

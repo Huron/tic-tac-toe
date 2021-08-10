@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Interfaces;
 
 /**
@@ -7,10 +9,5 @@ namespace App\Interfaces;
  */
 interface ControllerInterface
 {
-    /**
-     * @param RequestInterface $request
-     *
-     * @return ResponseInterface
-     */
     public function execute(RequestInterface $request): ResponseInterface;
 }

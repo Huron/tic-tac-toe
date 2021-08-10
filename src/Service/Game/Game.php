@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Game;
 
 use App\Interfaces\Game\GameInterface;
@@ -13,16 +15,19 @@ class Game implements GameInterface
     private array $board;
     private string $status;
 
-    /**
-     * @return string
-     */
+    public function __construct(string $id, array $board, string $status)
+    {
+        $this->id = $id;
+        $this->board = $board;
+        $this->status = $status;
+    }
+
     public function getId(): string
     {
         return $this->id;
     }
 
     /**
-     * @param string $id
      * @return Game
      */
     public function setId(string $id): self
@@ -32,16 +37,12 @@ class Game implements GameInterface
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getBoard(): array
     {
         return $this->board;
     }
 
     /**
-     * @param array $board
      * @return Game
      */
     public function setBoard(array $board): self
@@ -51,16 +52,12 @@ class Game implements GameInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * @param string $status
      * @return Game
      */
     public function setStatus(string $status): self
@@ -68,18 +65,6 @@ class Game implements GameInterface
         $this->status = $status;
 
         return $this;
-    }
-
-    /**
-     * @param string $id
-     * @param array $board
-     * @param string $status
-     */
-    public function __construct(string $id, array $board, string $status)
-    {
-        $this->id = $id;
-        $this->board = $board;
-        $this->status = $status;
     }
 
     /** {@inheritdoc} */

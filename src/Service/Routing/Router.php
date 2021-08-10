@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Routing;
 
 use App\Interfaces\ControllerInterface;
@@ -24,7 +26,7 @@ class Router implements RouterInterface
         $reader = new AnnotationReader();
 
         /** @var \Composer\Autoload\ClassLoader $classLoader */
-        $classLoader = require(__DIR__.'/../../../vendor/autoload.php');
+        $classLoader = require __DIR__.'/../../../vendor/autoload.php';
         foreach ($classLoader->getClassMap() as $className => $file) {
             if (!preg_match('/^App/', $className)) {
                 continue;
@@ -42,12 +44,6 @@ class Router implements RouterInterface
         }
     }
 
-    /**
-     * @param string $url
-     * @param string $method
-     *
-     * @return RouteInterface|null
-     */
     public function getRoute(string $url, string $method): ?RouteInterface
     {
         $current = null;
@@ -58,6 +54,7 @@ class Router implements RouterInterface
                 foreach ($match as $key => $value) {
                     $_GET[$key] = $value;
                 }
+
                 break;
             }
         }

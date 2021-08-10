@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Service\Routing;
 
 use App\Exception\WrongArgumentException;
@@ -27,12 +29,12 @@ class Route implements RouteInterface
         if (!isset($values['pattern']) || empty($values['pattern'])) {
             throw new WrongArgumentException();
         }
-        $this->pattern = \sprintf('#%s#i', $values['pattern']);
+        $this->pattern = sprintf('#%s#i', $values['pattern']);
 
         if (isset($values['methods']) && !empty($values['methods'])) {
-            /** @var string|array $methods */
+            /** @var array|string $methods */
             $methods = $values['methods'];
-            if (!is_array($methods)) {
+            if (!\is_array($methods)) {
                 throw new WrongArgumentException();
             }
             $this->methods = array_map(
@@ -50,16 +52,12 @@ class Route implements RouteInterface
         return false !== preg_match($this->pattern, $url, $match);
     }
 
-    /**
-     * @return \ReflectionClass
-     */
     public function getControllerReflection(): \ReflectionClass
     {
         return $this->controllerReflection;
     }
 
     /**
-     * @param \ReflectionClass $controllerReflection
      * @return Route
      */
     public function setControllerReflection(\ReflectionClass $controllerReflection): self
@@ -72,6 +70,6 @@ class Route implements RouteInterface
     /** {@inheritdoc} */
     public function isMethodMatch(string $method): bool
     {
-        return empty($this->methods) || in_array(strtoupper($method), $this->methods, true);
+        return empty($this->methods) || \in_array(strtoupper($method), $this->methods, true);
     }
 }
