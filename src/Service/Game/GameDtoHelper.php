@@ -31,8 +31,7 @@ class GameDtoHelper implements GameDtoHelperInterface
     }
 
     /**
-     * @param GameInterface $previousState
-     * @param GameInterface $currentState
+     * {@inheritdoc}
      *
      * @throws WrongGameStageException
      * @throws WrongMoveException
@@ -81,7 +80,7 @@ class GameDtoHelper implements GameDtoHelperInterface
     /**
      * @param string $stringBoard
      *
-     * @return array
+     * @return string[]
      */
     private function convertStringToBoard(string $stringBoard): array
     {

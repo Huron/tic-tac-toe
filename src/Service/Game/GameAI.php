@@ -80,7 +80,7 @@ class GameAI implements GameAIInterface
     }
 
     /**
-     * @param array $board
+     * @param string[] $board
      *
      * @return string
      */
@@ -107,9 +107,9 @@ class GameAI implements GameAIInterface
     }
 
     /**
-     * @param array  $board
-     * @param int    $index
-     * @param string $symbol
+     * @param string[] $board
+     * @param int      $index
+     * @param string   $symbol
      *
      * @return int
      */
@@ -152,6 +152,10 @@ class GameAI implements GameAIInterface
     }
 
     /**
+     * @param int[] $moveScores
+     *
+     * @return int
+     *
      * @throws \Exception
      */
     private static function selectCell(array $moveScores): int

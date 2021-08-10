@@ -15,8 +15,7 @@ class GameStorage implements GameStorageInterface
 {
     public const DIRECTORY = __DIR__.'/../../../var/games';
 
-    /** {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public function list(): array
     {
         $games = [];
@@ -64,6 +63,8 @@ class GameStorage implements GameStorageInterface
     }
 
     /**
+     * @param string|null $id
+     *
      * @throws FileNotFoundException
      */
     public function delete(?string $id): void

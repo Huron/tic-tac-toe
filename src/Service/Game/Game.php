@@ -27,16 +27,16 @@ class Game implements GameInterface
         $this->status = $status;
     }
 
-    /**
-     * @return string
-     */
+    /** {@inheritdoc} */
     public function getId(): string
     {
         return $this->id;
     }
 
     /**
-     * @return Game
+     * @param string $id
+     *
+     * @return $this
      */
     public function setId(string $id): self
     {
@@ -45,17 +45,13 @@ class Game implements GameInterface
         return $this;
     }
 
-    /**
-     * @return array
-     */
+    /** {@inheritdoc} */
     public function getBoard(): array
     {
         return $this->board;
     }
 
-    /**
-     * @return Game
-     */
+    /** {@inheritdoc} */
     public function setBoard(array $board): self
     {
         $this->board = $board;
@@ -63,14 +59,13 @@ class Game implements GameInterface
         return $this;
     }
 
+    /** {@inheritdoc} */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * @return Game
-     */
+    /** {@inheritdoc} */
     public function setStatus(string $status): self
     {
         $this->status = $status;

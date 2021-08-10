@@ -58,9 +58,7 @@ class Route implements RouteInterface
         return $this->controllerReflection;
     }
 
-    /**
-     * @return Route
-     */
+    /** {@inheritdoc} */
     public function setControllerReflection(\ReflectionClass $controllerReflection): self
     {
         $this->controllerReflection = $controllerReflection;
