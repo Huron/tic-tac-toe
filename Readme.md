@@ -19,6 +19,7 @@ Try to keep slim and omit heavy framework usage. Any required libraries and comp
 
 ```
 docker-compose up -d --build
+docker-compose exec php composer install
 ```
 
 The backed server will be ready on http://localhost.
