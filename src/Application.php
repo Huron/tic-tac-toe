@@ -41,9 +41,9 @@ final class Application
     }
 
     /**
-     * @return ResponseInterface
-     *
      * @throws AbstractHttpException|\ReflectionException
+     *
+     * @return ResponseInterface
      */
     public function run(): ResponseInterface
     {

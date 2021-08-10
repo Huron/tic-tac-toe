@@ -154,9 +154,9 @@ class GameAI implements GameAIInterface
     /**
      * @param int[] $moveScores
      *
-     * @return int
-     *
      * @throws \Exception
+     *
+     * @return int
      */
     private static function selectCell(array $moveScores): int
     {

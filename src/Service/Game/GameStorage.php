@@ -63,7 +63,7 @@ class GameStorage implements GameStorageInterface
     }
 
     /**
-     * @param string|null $id
+     * @param null|string $id
      *
      * @throws FileNotFoundException
      */
