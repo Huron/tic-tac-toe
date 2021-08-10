@@ -7,6 +7,7 @@ namespace App\Service\Routing;
 use App\Interfaces\ControllerInterface;
 use App\Interfaces\Routing\RouteInterface;
 use App\Interfaces\Routing\RouterInterface;
+use Composer\Autoload\ClassLoader;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
@@ -16,16 +17,19 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 class Router implements RouterInterface
 {
     /**
-     * @var Route[]
+     * @var RouteInterface[]
      */
     private array $routes = [];
 
+    /**
+     * @throws \ReflectionException
+     */
     public function __construct()
     {
         AnnotationRegistry::registerLoader('class_exists');
         $reader = new AnnotationReader();
 
-        /** @var \Composer\Autoload\ClassLoader $classLoader */
+        /** @var ClassLoader $classLoader */
         $classLoader = require __DIR__.'/../../../vendor/autoload.php';
         foreach ($classLoader->getClassMap() as $className => $file) {
             if (!preg_match('/^App/', $className)) {
@@ -35,6 +39,7 @@ class Router implements RouterInterface
             if (!$reflection->isSubclassOf(ControllerInterface::class)) {
                 continue;
             }
+            /** @var null|RouteInterface $route */
             $route = $reader->getClassAnnotation($reflection, Route::class);
             if (null === $route) {
                 continue;
@@ -44,6 +49,7 @@ class Router implements RouterInterface
         }
     }
 
+    /** {@inheritdoc} */
     public function getRoute(string $url, string $method): ?RouteInterface
     {
         $current = null;

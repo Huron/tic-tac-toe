@@ -15,6 +15,11 @@ class Game implements GameInterface
     private array $board;
     private string $status;
 
+    /**
+     * @param string $id
+     * @param array  $board
+     * @param string $status
+     */
     public function __construct(string $id, array $board, string $status)
     {
         $this->id = $id;
@@ -22,6 +27,9 @@ class Game implements GameInterface
         $this->status = $status;
     }
 
+    /**
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
@@ -37,6 +45,9 @@ class Game implements GameInterface
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getBoard(): array
     {
         return $this->board;

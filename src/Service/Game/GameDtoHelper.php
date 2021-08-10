@@ -30,6 +30,13 @@ class GameDtoHelper implements GameDtoHelperInterface
         return GameObjectFactory::createGame($id, $this->convertStringToBoard($dto->board), $status);
     }
 
+    /**
+     * @param GameInterface $previousState
+     * @param GameInterface $currentState
+     *
+     * @throws WrongGameStageException
+     * @throws WrongMoveException
+     */
     public function checkMove(GameInterface $previousState, GameInterface $currentState): void
     {
         if ($previousState->isFinished()) {
@@ -69,6 +76,11 @@ class GameDtoHelper implements GameDtoHelperInterface
         }
     }
 
+    /**
+     * @param string $stringBoard
+     *
+     * @return array
+     */
     private function convertStringToBoard(string $stringBoard): array
     {
         return str_split($stringBoard);

@@ -52,6 +52,7 @@ class Route implements RouteInterface
         return (bool) preg_match($this->pattern, $url, $match);
     }
 
+    /** {@inheritdoc} */
     public function getControllerReflection(): \ReflectionClass
     {
         return $this->controllerReflection;

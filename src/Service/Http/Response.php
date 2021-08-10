@@ -15,6 +15,11 @@ class Response implements ResponseInterface
     private ?string $content;
     private array $headers;
 
+    /**
+     * @param int         $statusCode
+     * @param null|string $content
+     * @param array       $headers
+     */
     public function __construct(int $statusCode = HttpStatusCode::OK, ?string $content = null, array $headers = [])
     {
         $this->statusCode = $statusCode;
@@ -34,14 +39,10 @@ class Response implements ResponseInterface
         return 'application/json';
     }
 
+    /** {@inheritdoc} */
     public function getStatusCode(): int
     {
         return $this->statusCode;
-    }
-
-    public function getHeaders(): array
-    {
-        return $this->headers;
     }
 
     /** {@inheritdoc} */

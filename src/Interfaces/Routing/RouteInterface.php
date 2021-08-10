@@ -28,4 +28,11 @@ interface RouteInterface
      * @return \ReflectionClass
      */
     public function getControllerReflection(): \ReflectionClass;
+
+    /**
+     * @param \ReflectionClass $controllerReflection
+     *
+     * @return $this
+     */
+    public function setControllerReflection(\ReflectionClass $controllerReflection): self;
 }

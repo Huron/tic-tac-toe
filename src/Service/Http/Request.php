@@ -14,6 +14,9 @@ class Request implements RequestInterface
 {
     private array $getData;
 
+    /**
+     * @param array $get
+     */
     public function __construct(array $get)
     {
         $this->getData = $get;
@@ -37,6 +40,7 @@ class Request implements RequestInterface
         }
     }
 
+    /** {@inheritdoc} */
     public function get(string $name, ?string $default = null): ?string
     {
         return $this->getData[$name] ?? $default;

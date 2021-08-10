@@ -79,6 +79,11 @@ class GameAI implements GameAIInterface
         $game->setStatus($status);
     }
 
+    /**
+     * @param array $board
+     *
+     * @return string
+     */
     private static function getStatus(array $board): string
     {
         $totalScore = static::X_SCORE | static::O_SCORE;
@@ -101,6 +106,13 @@ class GameAI implements GameAIInterface
         return static::SCORE_TO_STATUS[$result];
     }
 
+    /**
+     * @param array  $board
+     * @param int    $index
+     * @param string $symbol
+     *
+     * @return int
+     */
     private static function getNextStepRating(array $board, int $index, string $symbol): int
     {
         $ratings = [0, 0, 0, 0, 0, 0, 0, 0, 0];

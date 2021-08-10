@@ -44,6 +44,7 @@ class GameStorage implements GameStorageInterface
         file_put_contents(static::getFileName($game->getId()), serialize($game));
     }
 
+    /** {@inheritdoc} */
     public function get(?string $id): ?Game
     {
         if (null === $id) {
@@ -77,6 +78,11 @@ class GameStorage implements GameStorageInterface
         unlink($fileName);
     }
 
+    /**
+     * @param string $id
+     *
+     * @return string
+     */
     private static function getFileName(string $id): string
     {
         return sprintf('%s/%s', self::DIRECTORY, $id);
