@@ -49,7 +49,7 @@ class Route implements RouteInterface
     /** {@inheritdoc} */
     public function isMatch(string $url, array &$match): bool
     {
-        return false !== preg_match($this->pattern, $url, $match);
+        return (bool) preg_match($this->pattern, $url, $match);
     }
 
     public function getControllerReflection(): \ReflectionClass
