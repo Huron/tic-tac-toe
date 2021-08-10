@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Interfaces\Game;
 
-use App\Service\Game\Game;
-
 /**
  * GameStorageInterface.
  */
@@ -24,9 +22,9 @@ interface GameStorageInterface
     /**
      * @param null|string $id
      *
-     * @return null|Game
+     * @return null|GameInterface
      */
-    public function get(?string $id): ?Game;
+    public function get(?string $id): ?GameInterface;
 
     /**
      * @param null|string $id

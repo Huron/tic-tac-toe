@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Interfaces\Game;
 
-use App\Service\Game\Game;
 use App\Service\Game\GameStatus;
 
 /**
@@ -22,8 +21,8 @@ interface GameDtoHelperInterface
     public function createGameFromDto(\stdClass $dto, ?string $id = null, string $status = GameStatus::RUNNING): GameInterface;
 
     /**
-     * @param Game          $previousState
+     * @param GameInterface $previousState
      * @param GameInterface $currentState
      */
-    public function checkMove(Game $previousState, GameInterface $currentState): void;
+    public function checkMove(GameInterface $previousState, GameInterface $currentState): void;
 }

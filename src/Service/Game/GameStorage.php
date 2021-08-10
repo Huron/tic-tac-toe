@@ -28,7 +28,7 @@ class GameStorage implements GameStorageInterface
                 continue;
             }
             $game = unserialize($content);
-            if (!$game instanceof Game) {
+            if (!$game instanceof GameInterface) {
                 continue;
             }
             $games[] = $game;
@@ -44,7 +44,7 @@ class GameStorage implements GameStorageInterface
     }
 
     /** {@inheritdoc} */
-    public function get(?string $id): ?Game
+    public function get(?string $id): ?GameInterface
     {
         if (null === $id) {
             return null;
@@ -59,7 +59,7 @@ class GameStorage implements GameStorageInterface
         }
         $game = unserialize($content);
 
-        return $game instanceof Game ? $game : null;
+        return $game instanceof GameInterface ? $game : null;
     }
 
     /**
