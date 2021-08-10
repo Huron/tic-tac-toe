@@ -14,3 +14,13 @@ Try to keep slim and omit heavy framework usage. Any required libraries and comp
 * Client makes a move; move is sent back to the server.
 * Backend validates the move, makes it's own move and updates the game state. The updated game state is returned in the response.
 * And so on. The game is over once the computer or the player gets 3 noughts or crosses, horizontally, vertically or diagonally or there are no moves to be made.
+
+## Installation
+
+```
+docker-compose up -d --build
+```
+
+The backed server will be ready on http://localhost.
+
+Swagger UI: http://localhost:8080
