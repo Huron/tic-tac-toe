@@ -22,8 +22,8 @@ interface GameDtoHelperInterface
     public function createGateFromDto(\stdClass $dto, ?string $id = null, string $status = GameStatus::RUNNING): GameInterface;
 
     /**
-     * @param Game          $previousGame
-     * @param GameInterface $currentGame
+     * @param Game          $previousState
+     * @param GameInterface $currentState
      */
-    public function checkMove(Game $previousGame, GameInterface $currentGame): void;
+    public function checkMove(Game $previousState, GameInterface $currentState): void;
 }

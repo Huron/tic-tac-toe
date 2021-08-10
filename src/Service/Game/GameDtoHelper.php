@@ -30,14 +30,14 @@ class GameDtoHelper implements GameDtoHelperInterface
         return GameObjectFactory::createGame($id, $this->convertStringToBoard($dto->board), $status);
     }
 
-    public function checkMove(GameInterface $previousGame, GameInterface $currentGame): void
+    public function checkMove(GameInterface $previousState, GameInterface $currentState): void
     {
-        if ($previousGame->isFinished()) {
+        if ($previousState->isFinished()) {
             throw new WrongGameStageException();
         }
         $diff = [];
-        $previousBoard = $previousGame->getBoard();
-        $currentBoard = $currentGame->getBoard();
+        $previousBoard = $previousState->getBoard();
+        $currentBoard = $currentState->getBoard();
         foreach ($previousBoard as $index => $previousCell) {
             $currentCell = $currentBoard[$index];
             if ($previousCell === $currentCell) {
