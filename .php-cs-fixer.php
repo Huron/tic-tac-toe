@@ -10,11 +10,15 @@ $config = new PhpCsFixer\Config();
 $config
     ->setRiskyAllowed(true)
     ->setRules([
+        'ordered_imports' => true,
+        'no_unused_imports' => true,
         '@PHP71Migration:risky' => true,
         '@PHPUnit75Migration:risky' => true,
         '@PhpCsFixer' => true,
         '@PhpCsFixer:risky' => true,
         'general_phpdoc_annotation_remove' => ['annotations' => ['expectedDeprecation']], // one should use PHPUnit built-in method instead
+        'array_syntax' => ['syntax' => 'short'],
+        'no_superfluous_phpdoc_tags' => true,
     ])
     ->setFinder($finder)
 ;

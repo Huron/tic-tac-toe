@@ -21,7 +21,7 @@
     },
     "scripts": {
         "ci:static-analysis": [
-            "vendor/bin/phpstan analyse -l 7 --no-progress -c phpstan.neon src/"
+            "vendor/bin/phpstan analyse -l 8 --no-progress -c phpstan.neon src/"
         ],
         "ci:code-style": [
             "vendor/bin/phpcs --standard=phpcs.xml",

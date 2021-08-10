@@ -28,6 +28,9 @@ final class Application
         $this->router = new Router();
     }
 
+    /**
+     * @return $this
+     */
     public static function getInstance(): self
     {
         if (null === static::$instance) {
