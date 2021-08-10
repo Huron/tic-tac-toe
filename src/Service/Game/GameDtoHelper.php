@@ -58,6 +58,8 @@ class GameDtoHelper implements GameDtoHelperInterface
     }
 
     /**
+     * @param \stdClass $dto
+     *
      * @throws AbstractValidationException
      */
     private function validateDto(\stdClass $dto): void
