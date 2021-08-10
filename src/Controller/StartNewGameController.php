@@ -25,7 +25,7 @@ class StartNewGameController extends AbstractController
      */
     public function execute(RequestInterface $request): ResponseInterface
     {
-        $game = GameObjectFactory::createDtoHelper()->createGateFromDto($request->getJsonData());
+        $game = GameObjectFactory::createDtoHelper()->createGameFromDto($request->getJsonData());
         GameObjectFactory::createStorage()->save($game);
         $location = sprintf('/api/v1/games/%s', $game->getId());
 

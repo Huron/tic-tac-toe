@@ -19,7 +19,7 @@ interface GameDtoHelperInterface
      *
      * @return GameInterface
      */
-    public function createGateFromDto(\stdClass $dto, ?string $id = null, string $status = GameStatus::RUNNING): GameInterface;
+    public function createGameFromDto(\stdClass $dto, ?string $id = null, string $status = GameStatus::RUNNING): GameInterface;
 
     /**
      * @param Game          $previousState

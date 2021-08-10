@@ -33,7 +33,7 @@ class MoveGameController extends AbstractController
         if (null === $id || null === $previousGame) {
             throw new FileNotFoundException();
         }
-        $currentGame = $helper->createGateFromDto($request->getJsonData(), $id);
+        $currentGame = $helper->createGameFromDto($request->getJsonData(), $id);
         $helper->checkMove($previousGame, $currentGame);
         $ai = GameObjectFactory::createGameAI();
         $ai->checkGameStatus($currentGame);
