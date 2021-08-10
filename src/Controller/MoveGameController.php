@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\FileNotFoundException;
+use App\Exception\JsonEncodingException;
 use App\Interfaces\RequestInterface;
 use App\Interfaces\ResponseInterface;
 use App\Service\Game\Factory\GameObjectFactory;
@@ -19,7 +20,10 @@ use App\Service\Routing\Route;
  */
 class MoveGameController extends AbstractController
 {
-    /** {@inheritdoc} */
+    /** {@inheritdoc}
+     *
+     * @throws FileNotFoundException|JsonEncodingException
+     */
     public function execute(RequestInterface $request): ResponseInterface
     {
         $storage = GameObjectFactory::createStorage();

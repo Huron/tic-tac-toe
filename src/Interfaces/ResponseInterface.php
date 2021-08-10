@@ -9,10 +9,19 @@ namespace App\Interfaces;
  */
 interface ResponseInterface
 {
+    /**
+     * @return null|string
+     */
     public function getContent(): ?string;
 
+    /**
+     * @return string
+     */
     public function getContentType(): string;
 
+    /**
+     * @return int
+     */
     public function getStatusCode(): int;
 
     /**

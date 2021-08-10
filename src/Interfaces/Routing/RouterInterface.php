@@ -9,5 +9,11 @@ namespace App\Interfaces\Routing;
  */
 interface RouterInterface
 {
+    /**
+     * @param string $url
+     * @param string $method
+     *
+     * @return null|RouteInterface
+     */
     public function getRoute(string $url, string $method): ?RouteInterface;
 }

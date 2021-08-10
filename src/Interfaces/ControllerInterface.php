@@ -9,5 +9,10 @@ namespace App\Interfaces;
  */
 interface ControllerInterface
 {
+    /**
+     * @param RequestInterface $request
+     *
+     * @return ResponseInterface
+     */
     public function execute(RequestInterface $request): ResponseInterface;
 }

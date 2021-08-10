@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\FileNotFoundException;
+use App\Exception\JsonEncodingException;
 use App\Interfaces\RequestInterface;
 use App\Interfaces\ResponseInterface;
 use App\Service\Game\Factory\GameObjectFactory;
@@ -21,6 +22,7 @@ class GetGameController extends AbstractController
     /** {@inheritdoc}
      *
      * @throws FileNotFoundException
+     * @throws JsonEncodingException
      */
     public function execute(RequestInterface $request): ResponseInterface
     {

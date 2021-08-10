@@ -17,6 +17,7 @@ $config
         'no_unused_imports' => true,
         'array_syntax' => ['syntax' => 'short'],
         'no_superfluous_phpdoc_tags' => false,
+        'no_empty_phpdoc' => true
     ])
     ->setFinder($finder)
 ;

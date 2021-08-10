@@ -13,6 +13,10 @@ use Throwable;
  */
 abstract class AbstractValidationException extends AbstractHttpException
 {
+    /**
+     * @param string         $message
+     * @param null|Throwable $previous
+     */
     public function __construct(string $message, Throwable $previous = null)
     {
         parent::__construct($message, HttpStatusCode::BAD_REQUEST, $previous);

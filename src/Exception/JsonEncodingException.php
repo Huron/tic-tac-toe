@@ -12,6 +12,9 @@ use Throwable;
  */
 class JsonEncodingException extends AbstractHttpException
 {
+    /**
+     * @param null|Throwable $previous
+     */
     public function __construct(Throwable $previous = null)
     {
         parent::__construct('JSON encoding error', HttpStatusCode::INTERNAL_SERVER_ERROR, $previous);

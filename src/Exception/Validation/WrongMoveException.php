@@ -11,6 +11,9 @@ use Throwable;
  */
 class WrongMoveException extends AbstractValidationException
 {
+    /**
+     * @param null|Throwable $previous
+     */
     public function __construct(Throwable $previous = null)
     {
         parent::__construct('Wrong move', $previous);

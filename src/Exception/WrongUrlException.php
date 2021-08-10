@@ -12,6 +12,9 @@ use Throwable;
  */
 class WrongUrlException extends AbstractHttpException
 {
+    /**
+     * @param null|Throwable $previous
+     */
     public function __construct(Throwable $previous = null)
     {
         parent::__construct('Wrong URL', HttpStatusCode::BAD_REQUEST, $previous);
