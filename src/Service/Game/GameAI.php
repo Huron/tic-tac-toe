@@ -51,6 +51,11 @@ class GameAI implements GameAIInterface
         GameStatus::DRAW => self::DRAW_RATING,
     ];
 
+    private const SWAP_SYMBOL = [
+        GameMoveSymbol::O => GameMoveSymbol::X,
+        GameMoveSymbol::X => GameMoveSymbol::O,
+    ];
+
     /** {@inheritdoc}
      *
      * @throws \Exception
@@ -100,7 +105,7 @@ class GameAI implements GameAIInterface
     {
         $ratings = [0, 0, 0, 0, 0, 0, 0, 0, 0];
         $board[$index] = $symbol;
-        $symbol = GameMoveSymbol::O === $symbol ? GameMoveSymbol::X : GameMoveSymbol::O;
+        $symbol = static::SWAP_SYMBOL[$symbol];
         $status = static::getStatus($board);
         $result = static::STATUS_TO_RATING[$status];
         if (GameStatus::RUNNING === $status) {
