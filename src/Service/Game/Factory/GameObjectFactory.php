@@ -44,9 +44,9 @@ class GameObjectFactory
     }
 
     /**
-     * @param string|null $id
-     * @param array $board
-     * @param string $status
+     * @param null|string $id
+     * @param array       $board
+     * @param string      $status
      *
      * @return GameInterface
      */
