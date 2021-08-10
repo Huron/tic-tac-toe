@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<ruleset name="Codding Standard"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd"
+>
+    <arg name="basepath" value="."/>
+    <arg name="cache" value="./var/.phpcs-cache"/>
+    <arg name="extensions" value="php"/>
+    <arg name="encoding" value="utf-8"/>
+    <arg name="colors"/>
+    <arg name="parallel" value="4"/>
+    <arg value="p"/>
+    <arg value="s"/>
+
+    <file>./src/</file>
+
+    <!-- Don't hide tokenizer exceptions -->
+    <rule ref="Internal.Tokenizer.Exception">
+        <type>error</type>
+    </rule>
+
+    <!-- Don't allow to use underscore for methods and properties, throw it as code style error -->
+    <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+        <type>error</type>
+    </rule>
+    <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+        <type>error</type>
+    </rule>
+
+    <rule ref="Generic">
+        <exclude name="Generic"/>
+    </rule>
+</ruleset>

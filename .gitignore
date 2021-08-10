@@ -1,0 +1,5 @@
+/vendor/
+/var/
+/home/
+/.php-cs-fixer.cache
+/.idea/
